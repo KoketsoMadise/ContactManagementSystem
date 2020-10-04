@@ -5,7 +5,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     require_once "config.php";
     
     // Prepare a select statement
-    $sql = "SELECT * FROM employees WHERE id = ?";
+    $sql = "SELECT * FROM contacts WHERE id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -23,9 +23,12 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 
                 // Retrieve individual field value
-                $name = $row["name"];
+                $fullname = $row["fullname"];
+                $profression = $row["profession"];
+                $email = $row["email"];
+                $cellphone = $row["cellphone"];
+                $city = $row["city"];
                 $address = $row["address"];
-                $salary = $row["salary"];
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
                 header("location: error.php");
@@ -70,16 +73,28 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <h1>View Record</h1>
                     </div>
                     <div class="form-group">
-                        <label>Name</label>
-                        <p class="form-control-static"><?php echo $row["name"]; ?></p>
+                        <label>FullName</label>
+                        <p class="form-control-static"><?php echo $row["fullname"]; ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Profession</label>
+                        <p class="form-control-static"><?php echo $row["profession"]; ?></p>
+                    </div>               
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <p class="form-control-static"><?php echo $row["email"]; ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Cellphone</label>
+                        <p class="form-control-static"><?php echo $row["cellphone"]; ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <p class="form-control-static"><?php echo $row["city"]; ?></p>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
                         <p class="form-control-static"><?php echo $row["address"]; ?></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Salary</label>
-                        <p class="form-control-static"><?php echo $row["salary"]; ?></p>
                     </div>
                     <p><a href="index.php" class="btn btn-primary">Back</a></p>
                 </div>
