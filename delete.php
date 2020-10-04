@@ -5,7 +5,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     require_once "config.php";
     
     // Prepare a delete statement
-    $sql = "DELETE FROM employees WHERE id = ?";
+    $sql = "DELETE FROM contacts WHERE id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -57,7 +57,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h1>Delete Record</h1>
+                        <h1>Delete Contact</h1>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
